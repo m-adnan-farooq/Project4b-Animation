@@ -5,6 +5,9 @@ import Cloud2 from './Cloud2';
 import Cloud3 from './Cloud3';
 
 const Background = () => {
+    
+    const [pbRate, setpbRate] = useState(1)
+    
     const { ref, playstate, getAnimation } = useWebAnimations({
         keyframes: {
             transform: ["translateX(0vw)", "translateX(-10vw)"]
@@ -12,18 +15,30 @@ const Background = () => {
         timing: {
             duration: 1000,
             iterations: Infinity,
-        }
+        },
+        onReady: ({ playState, animate, animation }) => {
+            setInterval(()=>{
+                if(pbRate>=0.70){
+                    animation.updatePlaybackRate(animation.playbackRate/1.05);
+                    setpbRate(pbRate/1.05)
+                }
+
+            },2000)
+          },
     })
-    const [pbRate, setpbRate] = useState(1)
-    const updatePlaybackRate = () => {
+
+    
+    
+    const updatePlaybackRate1 = () => {
         if (pbRate <= 11) {
             getAnimation().updatePlaybackRate(getAnimation().playbackRate * 1.1);
             setpbRate(pbRate * 1.1);
+            
         }
     }
 
     return (
-        <div onMouseDown={updatePlaybackRate}>
+        <div onMouseDown={updatePlaybackRate1}>
             <img ref={ref} id="background" src={require("../images/grass2.jpg")} alt="background" />
             <Cloud1 pbRate={pbRate}/>
             <Cloud2 pbRate={pbRate}/>
