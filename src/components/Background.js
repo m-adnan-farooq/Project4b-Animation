@@ -30,7 +30,7 @@ const Background = () => {
     
     
     const updatePlaybackRate1 = () => {
-        if (pbRate <= 11) {
+        if (pbRate <= 8) {
             getAnimation().updatePlaybackRate(getAnimation().playbackRate * 1.1);
             setpbRate(pbRate * 1.1);
             
@@ -39,7 +39,7 @@ const Background = () => {
 
     return (
         <div onMouseDown={updatePlaybackRate1}>
-            <img ref={ref} id="background" src={require("../images/grass2.jpg")} alt="background" />
+            <img ref={ref} playstate = {playstate} id="background" src={require("../images/grass2.jpg")} alt="background" />
             <Cloud1 pbRate={pbRate}/>
             <Cloud2 pbRate={pbRate}/>
             <Cloud3 pbRate={pbRate}/>

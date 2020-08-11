@@ -7,13 +7,12 @@ const Cloud1 = ({pbRate})=>{
             transform:["translateX(1350px)", "translateX(-600px)"]
         },
         timing:{
-            duration:80000,
+            duration:50000,
             iterations: Infinity,
         }
     })
     useEffect(() => {
         getAnimation().updatePlaybackRate(pbRate);
-        console.log(pbRate)
         }
     ,)
 
